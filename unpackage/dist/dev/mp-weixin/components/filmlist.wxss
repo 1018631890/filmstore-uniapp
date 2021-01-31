@@ -1,0 +1,15 @@
+
+.film-info {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.film-name {
+	font-size:larger;
+	font-weight: 1000;
+}
+.film-time.film-timelong.film-type {
+	font-size: smaller;
+	font-weight: 100;
+}
+

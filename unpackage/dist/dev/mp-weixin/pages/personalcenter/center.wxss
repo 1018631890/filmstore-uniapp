@@ -1,0 +1,28 @@
+
+.account-bar {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.account-name {
+	font-size: x-large;
+}
+.ticket {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-size:large;
+}
+.setting {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-size:large;
+}
+.about-us {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-size:large;
+}
+

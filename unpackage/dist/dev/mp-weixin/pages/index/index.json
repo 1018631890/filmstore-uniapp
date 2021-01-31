@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "毕设电影网",
+  "usingComponents": {
+    "filmlist": "/components/filmlist"
+  }
+}
