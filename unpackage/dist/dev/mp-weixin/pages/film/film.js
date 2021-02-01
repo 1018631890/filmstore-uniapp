@@ -93,6 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniSearchBar: function() {
+      return __webpack_require__.e(/*! import() | components/uni-search-bar/uni-search-bar */ "components/uni-search-bar/uni-search-bar").then(__webpack_require__.bind(null, /*! @/components/uni-search-bar/uni-search-bar.vue */ 78))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -130,19 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var filmlist = function filmlist() {__webpack_require__.e(/*! require.ensure | components/filmlist */ "components/filmlist").then((function () {return resolve(__webpack_require__(/*! ../../components/filmlist.vue */ 42));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var filmlist = function filmlist() {__webpack_require__.e(/*! require.ensure | components/filmlist */ "components/filmlist").then((function () {return resolve(__webpack_require__(/*! ../../components/filmlist.vue */ 66));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -156,15 +167,17 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      film: [] };
+      film: [],
+      input: '' };
 
   },
   methods: {
-    getfilm: function getfilm(n) {var _this = this;
+    getfilm: function getfilm(s) {var _this = this;
       uni.request({
-        url: "http://localhost:8080/film/getbywill/",
+        url: "http://localhost:8080/film/search",
         data: {
-          will: n },
+          will: 2,
+          s: this.input },
 
         success: function success(res) {
           console.log(res);
@@ -180,6 +193,9 @@ __webpack_require__.r(__webpack_exports__);
           _this2.film = res.data;
         } });
 
+    },
+    valuechange: function valuechange(value) {
+      this.input = value.value;
     } },
 
   components: { filmlist: filmlist },

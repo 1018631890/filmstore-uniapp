@@ -7,9 +7,14 @@ page{
 }
 
 /* 搜索框 */
-.search-ico, .search-ico-1{
+.search-ico{
     width: 40rpx;
     height: 40rpx;
+}
+.search-ico-1 {
+	width: 40rpx;
+	height: 40rpx;
+	position: absolute;
 }
 .search-text{
     font-size: 14px;

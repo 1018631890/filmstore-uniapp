@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "电影",
   "usingComponents": {
+    "uni-search-bar": "/components/uni-search-bar/uni-search-bar",
     "filmlist": "/components/filmlist"
   }
 }
