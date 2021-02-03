@@ -3,15 +3,15 @@
 		
 		
 		<!-- 账号行 -->
-		<view style="height: 300rpx;" class="account-bar" @click="myaccount">
-			<view style="padding-top: 50rpx;padding-left: 100rpx;width: 150rpx">
-				<image style="width: 150rpx;height: 150rpx;" src="http://localhost:8080/image/black.jpg"></image>
+		<view style="height: 300rpx;" class="account-bar" @click="isLogin? myaccount():login()">
+			<view style="padding-top: 70rpx;padding-left: 100rpx;width: 150rpx">
+				<image class="picture" style="width: 150rpx;height: 150rpx;" src="http://localhost:8080/image/black.jpg"></image>
 			</view>
-			<view style="padding-top: 50rpx;padding-left: 50rpx;width: 300rpx" v-show="!isLogin">
-				<text class="account-name" @click="login">请登录</text>
+			<view style="padding-top: 100rpx;padding-left: 50rpx;width: 300rpx" v-show="!isLogin">
+				<text class="account-name">Hi，请登录</text>
 			</view>
-			<view style="padding-top: 50rpx;padding-left: 50rpx;width: 300rpx" v-show="isLogin">
-				<text class="account-name">账号名字</text>
+			<view style="padding-top: 70rpx;padding-left: 50rpx;width: 300rpx" v-show="isLogin">
+				<text class="account-name">{{username}}</text>
 				<text>\n\n额外信息</text>
 			</view>
 			<view style="width: auto">
@@ -77,7 +77,8 @@
 	export default {
 		data() {
 			return {
-				isLogin: true
+				isLogin: false,
+				username: '',
 			}
 		},
 		methods: {
@@ -102,11 +103,18 @@
 				})
 			},
 			login() {
-				console.log("1")
+				uni.redirectTo({
+					url: "/pages/personalcenter/login"
+				})
 			}
 		},
 		created() {
-			
+			const value = uni.getStorageSync('isLogin')
+			if(value === true)
+			{
+				this.isLogin = uni.getStorageSync('isLogin')
+				this.username = uni.getStorageSync('username')
+			}
 		}
 	}
 </script>
@@ -129,5 +137,8 @@
 	.about-us {
 		display: flex;
 		font-size:large;
+	}
+	.picture {
+		border-radius: 40px;
 	}
 </style>

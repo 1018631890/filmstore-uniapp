@@ -47,6 +47,12 @@
 			"style": {
 				"navigationBarTitleText": "小程序设置"
 			}
+		},
+		{
+			"path":"pages/personalcenter/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
 		}
 		
 	],

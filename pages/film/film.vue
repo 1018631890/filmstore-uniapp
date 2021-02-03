@@ -1,6 +1,7 @@
 <template>
 	<view>
 	        <uni-search-bar placeholder="搜索" radius="30" @confirm="getfilm(input)" @input="valuechange"></uni-search-bar>
+			<view style="background-color: #eee;height: 10rpx;"></view>
 			<view>
 				<filmlist :data="film"></filmlist>
 			</view>
