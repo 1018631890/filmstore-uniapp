@@ -1,1 +1,1 @@
-<view class="_div"></view>
+<view><block wx:for="{{ticket}}" wx:for-item="item" wx:for-index="__i0__"><uni-card vue-id="{{'e1fe7aee-1-'+__i0__}}" title="{{item.film_name}}" mode="title" is-shadow="{{true}}" thumbnail="../../static/票据.png" extra="3DMAX电影" note="Tips" bind:__l="__l" vue-slots="{{['default','footer']}}"><view slot="footer"><view class="footer-box"><button class="btn" type="warn">使用</button></view></view>影院A<view class="_br"></view>上午场	10：00-12：00<view class="_br"></view>座位号（4，6）</uni-card></block></view>

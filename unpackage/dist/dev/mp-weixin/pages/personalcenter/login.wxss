@@ -1,0 +1,106 @@
+
+.mui-checkbox input[type='checkbox']:checked:before {
+    color: #00bbb1;
+}
+.RememberPass {
+    color: #adadad;
+
+    margin-top: 5px;
+}
+.RememberCheck {
+    margin-left: -50%;
+    margin-top: 10px;
+    color: #adadad;
+}
+.content {
+    text-align: center;
+    height: 400rpx;
+}
+.backlogo {
+    padding-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.logo {
+    height: 200rpx;
+    width: 200rpx;
+    margin-top: 200rpx;
+}
+.titletal {
+    margin-top: 90rpx;
+    height: 75px;
+}
+.title {
+    /* font-size: 36upx; */
+    color: mediumaquamarine;
+    font-size: 150%;
+}
+.text {
+    border: 1, solid, black;
+}
+.login-from {
+    /* margin-top: 30%; */
+
+    -webkit-box-flex: 1;
+
+    -webkit-flex: auto;
+
+            flex: auto;
+    height: 100%;
+    width: 100%;
+}
+.inputView {
+    background-color: #fff;
+    line-height: 50px;
+    border-width: 1px;
+    border-bottom: 2dp;
+}
+/*输入框*/
+.nameImage,
+.keyImage {
+    margin-left: 22px;
+    width: 18px;
+    height: 18px;
+}
+.loginLab {
+    margin: 15px 15px 15px 10px;
+    color: #545454;
+    font-size: 18px;
+}
+.inputText {
+    -webkit-box-flex: block;
+    -webkit-flex: block;
+            flex: block;
+    float: right;
+    text-align: left;
+    margin-right: 22px;
+    margin-top: 15px;
+    color: #000000;
+    font-size: 18px;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+    margin-top: 1px;
+}
+/*按钮*/
+.loginBtnView {
+    width: 100%;
+    height: auto;
+    /* background-color:#FFFFFF; */
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+.loginBtn {
+    width: 80%;
+    margin-top: 50px;
+    background-color: mediumaquamarine;
+    color: aliceblue;
+}
+

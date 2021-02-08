@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/filmlist":1,"components/uni-search-bar/uni-search-bar":1,"components/uni-icons/uni-icons":1};
+/******/ 		var cssChunks = {"components/filmlist":1,"components/uni-search-bar/uni-search-bar":1,"components/uni-card/uni-card":1,"components/uni-icons/uni-icons":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/filmlist":"components/filmlist","components/uni-search-bar/uni-search-bar":"components/uni-search-bar/uni-search-bar","components/uni-icons/uni-icons":"components/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/filmlist":"components/filmlist","components/uni-search-bar/uni-search-bar":"components/uni-search-bar/uni-search-bar","components/uni-card/uni-card":"components/uni-card/uni-card","components/uni-icons/uni-icons":"components/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

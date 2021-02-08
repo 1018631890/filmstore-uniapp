@@ -28,4 +28,10 @@
 .picture {
 	border-radius: 40px;
 }
+.logout {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-size:large;
+}
 

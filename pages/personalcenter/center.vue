@@ -70,6 +70,22 @@
 		
 		<view style="background-color: #eee;height: 10rpx;"></view>
 		
+		
+		<!-- 注销 -->
+		<view class="logout" @click="logout">
+			<view>
+				<image src="../../static/注销.png" style="width: 40rpx;height: 40rpx;padding-left: 30rpx;padding-top: 35rpx;padding-bottom: 20rpx;"></image>
+			</view>
+			<view style="padding-top: 30rpx;padding-left: 20rpx;padding-bottom: 20rpx;width: 200rpx;">
+				<text >注销</text>
+			</view>
+			<view style="width: auto">
+				<image src="../../static/right.png" style="width: 50rpx;height: 50rpx;padding-top: 30rpx;padding-left: 390rpx;"></image>
+			</view>
+		</view>
+		
+		<view style="background-color: #eee;height: 10rpx;"></view>
+		
 	</view>
 </template>
 
@@ -106,6 +122,13 @@
 				uni.redirectTo({
 					url: "/pages/personalcenter/login"
 				})
+			},
+			logout() {
+				this.isLogin = false
+				uni.removeStorageSync('isLogin')
+				uni.removeStorageSync('username')
+				uni.removeStorageSync('password')
+				uni.removeStorageSync('userdata')
 			}
 		},
 		created() {
@@ -140,5 +163,9 @@
 	}
 	.picture {
 		border-radius: 40px;
+	}
+	.logout {
+		display: flex;
+		font-size:large;
 	}
 </style>

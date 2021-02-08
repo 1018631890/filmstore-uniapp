@@ -210,6 +210,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -243,6 +259,13 @@ var _default =
       uni.redirectTo({
         url: "/pages/personalcenter/login" });
 
+    },
+    logout: function logout() {
+      this.isLogin = false;
+      uni.removeStorageSync('isLogin');
+      uni.removeStorageSync('username');
+      uni.removeStorageSync('password');
+      uni.removeStorageSync('userdata');
     } },
 
   created: function created() {

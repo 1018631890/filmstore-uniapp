@@ -1,0 +1,13 @@
+
+.text {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	margin-top: 400rpx;
+	font-size: x-large;
+	font-weight: 900;
+}
+

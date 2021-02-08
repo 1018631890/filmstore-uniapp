@@ -1,0 +1,13 @@
+
+.ticket {
+}
+.btn {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	margin-left: 520rpx;
+	width: 130rpx;
+	border-radius: 25px;
+	font-size: medium;
+}
+
