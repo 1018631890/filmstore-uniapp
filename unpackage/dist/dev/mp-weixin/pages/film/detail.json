@@ -1,0 +1,7 @@
+{
+  "navigationBarText": "详细信息",
+  "usingComponents": {
+    "wuc-tab": "/components/wuc-tab/wuc-tab",
+    "unirate": "/components/uni-rate/uni-rate"
+  }
+}

@@ -1,0 +1,29 @@
+
+.film {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.film-text {
+	color: #FFFFFF;
+}
+.abstract {
+	color: #66CDAA;
+	font-size: larger;
+}
+.abstract-text {
+	color: #FFFFFF;
+	font-size: small;
+}
+.name-text {
+	font-size: larger;
+}
+.comment-text {
+	font-size: medium;
+}
+.film-ticket {
+	-webkit-border-radius: 20rpx;
+	        border-radius: 20rpx;
+	color: #FFFFFF;
+}
+

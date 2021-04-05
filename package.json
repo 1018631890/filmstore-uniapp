@@ -1,0 +1,12 @@
+{
+    "id": "xiao-star-component",
+    "name": "星级评分组件",
+    "version": "1.0.1",
+    "description": "星级评分插件",
+    "keywords": [
+        "评分",
+        "星级评分",
+        "uniapp",
+        "组件"
+    ]
+}
