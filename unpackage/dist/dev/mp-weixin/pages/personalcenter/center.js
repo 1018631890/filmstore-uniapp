@@ -241,13 +241,29 @@ var _default =
 
     },
     ticket: function ticket() {
-      uni.navigateTo({
-        url: "/pages/personalcenter/ticket" });
+      if (uni.getStorageSync('isLogin') === true)
+      {
+        uni.navigateTo({
+          url: "/pages/personalcenter/ticket" });
+
+      } else {
+        uni.redirectTo({
+          url: "/pages/personalcenter/login" });
+
+      }
 
     },
     setting: function setting() {
-      uni.navigateTo({
-        url: "/pages/personalcenter/setting" });
+      if (uni.getStorageSync('isLogin') === true)
+      {
+        uni.navigateTo({
+          url: "/pages/personalcenter/setting" });
+
+      } else {
+        uni.redirectTo({
+          url: "/pages/personalcenter/login" });
+
+      }
 
     },
     aboutus: function aboutus() {

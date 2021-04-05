@@ -8,7 +8,8 @@
     "pages/personalcenter/myaccount",
     "pages/personalcenter/ticket",
     "pages/personalcenter/setting",
-    "pages/personalcenter/login"
+    "pages/personalcenter/login",
+    "pages/film/detail"
   ],
   "subPackages": [],
   "window": {
@@ -46,5 +47,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap23.json"
+  "sitemapLocation": "sitemap90.json"
 }

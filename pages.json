@@ -53,6 +53,12 @@
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
+		},
+		{
+			"path":"pages/film/detail",
+			"style": {
+				"navigationBarText": "详细信息"
+			}
 		}
 		
 	],
