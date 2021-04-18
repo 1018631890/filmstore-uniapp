@@ -21,6 +21,20 @@
 		
 		<view style="background-color: #eee;height: 50rpx;"></view>
 		
+		<view class="about-us" @click="scancode">
+			<view>
+				<image src="../../static/扫码 (1).png" style="width: 50rpx;height: 50rpx;padding-left: 30rpx;padding-top: 30rpx;padding-bottom: 20rpx;"></image>
+			</view>
+			<view style="padding-top: 30rpx;padding-left: 20rpx;padding-bottom: 20rpx;width: 200rpx;">
+				<text >扫码购票</text>
+			</view>
+			<view style="width: auto">
+				<image src="../../static/right.png" style="width: 50rpx;height: 50rpx;padding-top: 30rpx;padding-left: 380rpx;"></image>
+			</view>
+		</view>
+		
+		<view style="background-color: #eee;height: 10rpx;"></view>
+		
 		<!-- 电影票行 -->
 		<view class="ticket" @click="ticket">
 			<view>
@@ -95,6 +109,7 @@
 			return {
 				isLogin: false,
 				username: '',
+				userdata: ''
 			}
 		},
 		methods: {
@@ -145,6 +160,52 @@
 				uni.removeStorageSync('username')
 				uni.removeStorageSync('password')
 				uni.removeStorageSync('userdata')
+			},
+			scancode() {
+				uni.scanCode({
+					success:  (res) => {
+						console.log('条码类型：' + res.scanType);
+						console.log('条码内容：' + res.result);
+						// c处理二维码内容
+						var account_id=res.result.split('/')[0]
+						var film_id=res.result.split('/')[1]
+						var ticket_num=res.result.split('/')[2]
+						var time=res.result.split('/')[3]
+						// 安全性判断
+						if(this.userdata.account_id-account_id===0)
+						{
+							// 增加电影票操作
+							uni.request({
+								url: "http://localhost:8080/ticket/insert",
+								data: {
+									account_id,
+									film_id,
+									ticket_num
+								},
+								success: res =>{
+									console.log(res.data)
+									uni.request({
+										url: "http://localhost:8080/purchase/dellist",
+										data: {
+											accountid: account_id
+										},
+										success: res=>{
+											console.log(res.data)
+										}
+									})
+								}
+							})
+						}else{
+							uni.showToast({
+								title: "网页端登录账号与移动端账号不符",
+								icon: 'none'
+							})
+						}
+					},
+					fail: (res) => {
+						console.log(res)
+					}
+				})
 			}
 		},
 		created() {
@@ -153,6 +214,7 @@
 			{
 				this.isLogin = uni.getStorageSync('isLogin')
 				this.username = uni.getStorageSync('username')
+				this.userdata = uni.getStorageSync('userdata')
 			}
 		}
 	}

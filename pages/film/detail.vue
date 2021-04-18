@@ -28,7 +28,9 @@
 		<view v-show="TabCur===0">
 			
 			<!-- 扫码入口 -->
-			<view>购票</view>
+			<view style="background-color: #eee;font-size: large;padding-top: 20rpx;padding-left: 20rpx;padding-bottom: 20rpx;">
+				扫码购票入口
+			</view>
 			
 			<!-- v-for循环卡片 -->
 			<view class="film-ticket" style="background-color: #4d4d4d;padding-top: 20rpx;padding-left: 50rpx;margin-left: 20rpx;margin-right: 20rpx;padding-bottom: 20rpx;margin-top: 10rpx;">

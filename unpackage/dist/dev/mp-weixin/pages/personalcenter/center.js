@@ -226,12 +226,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       isLogin: false,
-      username: '' };
+      username: '',
+      userdata: '' };
 
   },
   methods: {
@@ -282,6 +297,52 @@ var _default =
       uni.removeStorageSync('username');
       uni.removeStorageSync('password');
       uni.removeStorageSync('userdata');
+    },
+    scancode: function scancode() {var _this = this;
+      uni.scanCode({
+        success: function success(res) {
+          console.log('条码类型：' + res.scanType);
+          console.log('条码内容：' + res.result);
+          // c处理二维码内容
+          var account_id = res.result.split('/')[0];
+          var film_id = res.result.split('/')[1];
+          var ticket_num = res.result.split('/')[2];
+          var time = res.result.split('/')[3];
+          // 安全性判断
+          if (_this.userdata.account_id - account_id === 0)
+          {
+            // 增加电影票操作
+            uni.request({
+              url: "http://localhost:8080/ticket/insert",
+              data: {
+                account_id: account_id,
+                film_id: film_id,
+                ticket_num: ticket_num },
+
+              success: function success(res) {
+                console.log(res.data);
+                uni.request({
+                  url: "http://localhost:8080/purchase/dellist",
+                  data: {
+                    accountid: account_id },
+
+                  success: function success(res) {
+                    console.log(res.data);
+                  } });
+
+              } });
+
+          } else {
+            uni.showToast({
+              title: "网页端登录账号与移动端账号不符",
+              icon: 'none' });
+
+          }
+        },
+        fail: function fail(res) {
+          console.log(res);
+        } });
+
     } },
 
   created: function created() {
@@ -290,6 +351,7 @@ var _default =
     {
       this.isLogin = uni.getStorageSync('isLogin');
       this.username = uni.getStorageSync('username');
+      this.userdata = uni.getStorageSync('userdata');
     }
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
