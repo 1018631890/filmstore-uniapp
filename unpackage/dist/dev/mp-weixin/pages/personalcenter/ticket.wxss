@@ -5,10 +5,9 @@
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
-	margin-left: 520rpx;
-	width: 130rpx;
-	-webkit-border-radius: 25px;
-	        border-radius: 25px;
-	font-size: medium;
+	margin-left: 500rpx;
+	width: 140rpx;
+	border-radius: 25px;
+	font-size: small;
 }
 

@@ -27,19 +27,15 @@
 		<!-- 购票部分 -->
 		<view v-show="TabCur===0">
 			
-			<!-- 扫码入口 -->
-			<view style="background-color: #eee;font-size: large;padding-top: 20rpx;padding-left: 20rpx;padding-bottom: 20rpx;">
-				扫码购票入口
-			</view>
-			
 			<!-- v-for循环卡片 -->
 			<view class="film-ticket" style="background-color: #4d4d4d;padding-top: 20rpx;padding-left: 50rpx;margin-left: 20rpx;margin-right: 20rpx;padding-bottom: 20rpx;margin-top: 10rpx;">
-				<text>影院A\n\n</text>
-				<text>2021.04.05\n\n</text>
-				<text>3:30pm\n</text>
-				<view>
+				<text>{{filminfo.film_name}}\n\n</text>
+				<text>2021.xx.xx\n\n</text>
+				<text>xx:xx pm\n\n</text>
+				<view class="line">
 					<text>free</text>
-					<button plain type="primary" size="mini" style="margin-left: 450rpx;">购买</button>
+					<fx-number-box :min="0" :max="9" v-model="num" @change="numChange" style="margin-left: 180rpx;"></fx-number-box>
+					<button plain type="primary" size="mini" @click="buy()">购买</button>
 				</view>
 			</view>
 		</view>
@@ -60,10 +56,11 @@
 
 <script>
 	import WucTab from '@/components/wuc-tab/wuc-tab.vue';
-	import unirate from '@/components/uni-rate/uni-rate.vue'; 
+	import unirate from '@/components/uni-rate/uni-rate.vue';
+	import fxNumberBox from '@/components/fx-number-box/fx-number-box.vue';
 	export default {
 		components:{
-			WucTab,unirate
+			WucTab,unirate,fxNumberBox
 		},
 		data()
 		{
@@ -72,8 +69,13 @@
 				tabList: [{ name: '购票影票' }, { name: '查看评论' }],
 				filminfo: [],
 				value: 3,
-				comment: []
+				comment: [],
+				num: 1,
+				userdata: ''
 			}
+		},
+		created() {
+			this.userdata = uni.getStorageSync('userdata')
 		},
 		methods: {
 			onLoad: function(option)
@@ -105,6 +107,66 @@
 			},
 			RateonChange(e) {
 				console.log('rate发生改变:' + JSON.stringify(e))
+			},
+			numChange(value)
+			{
+				this.num = value
+			},
+			buy()
+			{
+				uni.request({
+					url: 'http://localhost:8080/ticket/check',
+					data:{
+						account_id: this.userdata.account_id,
+						film_id: this.filminfo.film_id
+					},
+					success: res=>{
+						if(res.data===true)
+						{
+							// 更新操作
+							uni.request({
+								url: "http://localhost:8080/ticket/changenum",
+								data: {
+									account_id: this.userdata.account_id,
+									film_id: this.filminfo.film_id,
+									num: this.num
+								},
+								success: res=>{
+									console.log(res.data)
+									if(res.data===true)
+									{
+										uni.showToast({
+											title: "电影票购买成功",
+											icon: 'none'
+										})
+									}
+								}
+							})
+						}
+						else
+						{
+							// 增加电影票操作
+							uni.request({
+								url: "http://localhost:8080/ticket/insert",
+								data: {
+									account_id: this.userdata.account_id,
+									film_id: this.filminfo.film_id,
+									ticket_num: this.num
+								},
+								success: res =>{
+									console.log(res.data)
+									if(res.data===true)
+									{
+										uni.showToast({
+											title: "电影票购买成功",
+											icon: 'none'
+										})
+									}
+								}
+							})
+						}
+					}
+				})
 			}
 		}
 	}
@@ -134,5 +196,8 @@
 	.film-ticket {
 		border-radius: 20rpx;
 		color: #FFFFFF;
+	}
+	.line {
+		display: flex;
 	}
 </style>

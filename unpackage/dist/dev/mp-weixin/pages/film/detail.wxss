@@ -22,8 +22,12 @@
 	font-size: medium;
 }
 .film-ticket {
-	-webkit-border-radius: 20rpx;
-	        border-radius: 20rpx;
+	border-radius: 20rpx;
 	color: #FFFFFF;
+}
+.line {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
 }
 

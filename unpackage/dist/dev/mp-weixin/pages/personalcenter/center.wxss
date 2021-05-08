@@ -26,8 +26,7 @@
 	font-size:large;
 }
 .picture {
-	-webkit-border-radius: 40px;
-	        border-radius: 40px;
+	border-radius: 40px;
 }
 .logout {
 	display: -webkit-box;

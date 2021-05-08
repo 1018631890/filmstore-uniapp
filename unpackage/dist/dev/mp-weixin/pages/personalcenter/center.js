@@ -311,28 +311,65 @@ var _default =
           // 安全性判断
           if (_this.userdata.account_id - account_id === 0)
           {
-            // 增加电影票操作
             uni.request({
-              url: "http://localhost:8080/ticket/insert",
+              url: 'http://localhost:8080/ticket/check',
               data: {
                 account_id: account_id,
-                film_id: film_id,
-                ticket_num: ticket_num },
+                film_id: film_id },
 
               success: function success(res) {
-                console.log(res.data);
-                uni.request({
-                  url: "http://localhost:8080/purchase/dellist",
-                  data: {
-                    accountid: account_id },
+                if (res.data === true)
+                {
+                  // 更新操作
+                  uni.request({
+                    url: "http://localhost:8080/ticket/changenum",
+                    data: {
+                      account_id: account_id,
+                      film_id: film_id,
+                      num: ticket_num },
 
-                  success: function success(res) {
-                    console.log(res.data);
-                  } });
+                    success: function success(res) {
+                      console.log(res.data);
+                      uni.request({
+                        url: "http://localhost:8080/purchase/dellist",
+                        data: {
+                          accountid: account_id },
 
+                        success: function success(res) {
+                          console.log(res.data);
+                        } });
+
+                    } });
+
+                } else
+
+                {
+                  // 增加电影票操作
+                  uni.request({
+                    url: "http://localhost:8080/ticket/insert",
+                    data: {
+                      account_id: account_id,
+                      film_id: film_id,
+                      ticket_num: ticket_num },
+
+                    success: function success(res) {
+                      console.log(res.data);
+                      uni.request({
+                        url: "http://localhost:8080/purchase/dellist",
+                        data: {
+                          accountid: account_id },
+
+                        success: function success(res) {
+                          console.log(res.data);
+                        } });
+
+                    } });
+
+                }
               } });
 
-          } else {
+          } else
+          {
             uni.showToast({
               title: "网页端登录账号与移动端账号不符",
               icon: 'none' });

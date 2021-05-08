@@ -2,6 +2,7 @@
   "navigationBarText": "详细信息",
   "usingComponents": {
     "wuc-tab": "/components/wuc-tab/wuc-tab",
+    "fx-number-box": "/components/fx-number-box/fx-number-box",
     "unirate": "/components/uni-rate/uni-rate"
   }
 }

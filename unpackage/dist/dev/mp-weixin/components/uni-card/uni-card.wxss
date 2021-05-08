@@ -31,8 +31,7 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
-  -webkit-box-shadow: 0 0 0 transparent;
-          box-shadow: 0 0 0 transparent;
+  box-shadow: 0 0 0 transparent;
   margin: 12px;
   background-color: #ffffff;
   position: relative;
@@ -43,8 +42,7 @@
   border-color: #c8c7cc;
   border-style: solid;
   border-width: 1px;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
+  border-radius: 3px;
   overflow: hidden;
 }
 .uni-card__thumbnailimage.data-v-3afcb0a4 {
@@ -116,8 +114,7 @@
   width: 40px;
   height: 40px;
   overflow: hidden;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
 }
 .uni-card__title-header-image.data-v-3afcb0a4 {
   width: 40px;
@@ -232,12 +229,10 @@
   border-color: #c8c7cc;
   border-style: solid;
   border-width: 1px;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
 .uni-card--full.data-v-3afcb0a4 {
   margin: 0;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 
