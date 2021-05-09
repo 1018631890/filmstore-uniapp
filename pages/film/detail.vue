@@ -71,11 +71,13 @@
 				value: 3,
 				comment: [],
 				num: 1,
-				userdata: ''
+				userdata: '',
+				isLogin: ''
 			}
 		},
 		created() {
 			this.userdata = uni.getStorageSync('userdata')
+			this.isLogin = uni.getStorageSync('isLogin')
 		},
 		methods: {
 			onLoad: function(option)
@@ -114,59 +116,67 @@
 			},
 			buy()
 			{
-				uni.request({
-					url: 'http://localhost:8080/ticket/check',
-					data:{
-						account_id: this.userdata.account_id,
-						film_id: this.filminfo.film_id
-					},
-					success: res=>{
-						if(res.data===true)
-						{
-							// 更新操作
-							uni.request({
-								url: "http://localhost:8080/ticket/changenum",
-								data: {
-									account_id: this.userdata.account_id,
-									film_id: this.filminfo.film_id,
-									num: this.num
-								},
-								success: res=>{
-									console.log(res.data)
-									if(res.data===true)
-									{
-										uni.showToast({
-											title: "电影票购买成功",
-											icon: 'none'
-										})
+				if(this.isLogin!==true)
+				{
+					uni.showToast({
+						title: '请先登录',
+						icon: 'none'
+					})
+				}else{
+					uni.request({
+						url: 'http://localhost:8080/ticket/check',
+						data:{
+							account_id: this.userdata.account_id,
+							film_id: this.filminfo.film_id
+						},
+						success: res=>{
+							if(res.data===true)
+							{
+								// 更新操作
+								uni.request({
+									url: "http://localhost:8080/ticket/changenum",
+									data: {
+										account_id: this.userdata.account_id,
+										film_id: this.filminfo.film_id,
+										num: this.num
+									},
+									success: res=>{
+										console.log(res.data)
+										if(res.data===true)
+										{
+											uni.showToast({
+												title: "电影票购买成功",
+												icon: 'none'
+											})
+										}
 									}
-								}
-							})
-						}
-						else
-						{
-							// 增加电影票操作
-							uni.request({
-								url: "http://localhost:8080/ticket/insert",
-								data: {
-									account_id: this.userdata.account_id,
-									film_id: this.filminfo.film_id,
-									ticket_num: this.num
-								},
-								success: res =>{
-									console.log(res.data)
-									if(res.data===true)
-									{
-										uni.showToast({
-											title: "电影票购买成功",
-											icon: 'none'
-										})
+								})
+							}
+							else
+							{
+								// 增加电影票操作
+								uni.request({
+									url: "http://localhost:8080/ticket/insert",
+									data: {
+										account_id: this.userdata.account_id,
+										film_id: this.filminfo.film_id,
+										ticket_num: this.num
+									},
+									success: res =>{
+										console.log(res.data)
+										if(res.data===true)
+										{
+											uni.showToast({
+												title: "电影票购买成功",
+												icon: 'none'
+											})
+										}
 									}
-								}
-							})
+								})
+							}
 						}
-					}
-				})
+					})
+				}
 			}
 		}
 	}

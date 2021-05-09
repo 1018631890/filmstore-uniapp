@@ -229,11 +229,13 @@ __webpack_require__.r(__webpack_exports__);
       value: 3,
       comment: [],
       num: 1,
-      userdata: '' };
+      userdata: '',
+      isLogin: '' };
 
   },
   created: function created() {
     this.userdata = uni.getStorageSync('userdata');
+    this.isLogin = uni.getStorageSync('isLogin');
   },
   methods: {
     onLoad: function onLoad(option)
@@ -272,59 +274,67 @@ __webpack_require__.r(__webpack_exports__);
     },
     buy: function buy()
     {var _this2 = this;
-      uni.request({
-        url: 'http://localhost:8080/ticket/check',
-        data: {
-          account_id: this.userdata.account_id,
-          film_id: this.filminfo.film_id },
+      if (this.isLogin !== true)
+      {
+        uni.showToast({
+          title: '请先登录',
+          icon: 'none' });
 
-        success: function success(res) {
-          if (res.data === true)
-          {
-            // 更新操作
-            uni.request({
-              url: "http://localhost:8080/ticket/changenum",
-              data: {
-                account_id: _this2.userdata.account_id,
-                film_id: _this2.filminfo.film_id,
-                num: _this2.num },
+      } else {
+        uni.request({
+          url: 'http://localhost:8080/ticket/check',
+          data: {
+            account_id: this.userdata.account_id,
+            film_id: this.filminfo.film_id },
 
-              success: function success(res) {
-                console.log(res.data);
-                if (res.data === true)
-                {
-                  uni.showToast({
-                    title: "电影票购买成功",
-                    icon: 'none' });
+          success: function success(res) {
+            if (res.data === true)
+            {
+              // 更新操作
+              uni.request({
+                url: "http://localhost:8080/ticket/changenum",
+                data: {
+                  account_id: _this2.userdata.account_id,
+                  film_id: _this2.filminfo.film_id,
+                  num: _this2.num },
 
-                }
-              } });
+                success: function success(res) {
+                  console.log(res.data);
+                  if (res.data === true)
+                  {
+                    uni.showToast({
+                      title: "电影票购买成功",
+                      icon: 'none' });
 
-          } else
+                  }
+                } });
 
-          {
-            // 增加电影票操作
-            uni.request({
-              url: "http://localhost:8080/ticket/insert",
-              data: {
-                account_id: _this2.userdata.account_id,
-                film_id: _this2.filminfo.film_id,
-                ticket_num: _this2.num },
+            } else
 
-              success: function success(res) {
-                console.log(res.data);
-                if (res.data === true)
-                {
-                  uni.showToast({
-                    title: "电影票购买成功",
-                    icon: 'none' });
+            {
+              // 增加电影票操作
+              uni.request({
+                url: "http://localhost:8080/ticket/insert",
+                data: {
+                  account_id: _this2.userdata.account_id,
+                  film_id: _this2.filminfo.film_id,
+                  ticket_num: _this2.num },
 
-                }
-              } });
+                success: function success(res) {
+                  console.log(res.data);
+                  if (res.data === true)
+                  {
+                    uni.showToast({
+                      title: "电影票购买成功",
+                      icon: 'none' });
 
-          }
-        } });
+                  }
+                } });
 
+            }
+          } });
+
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

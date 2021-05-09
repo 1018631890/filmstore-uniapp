@@ -216,7 +216,7 @@ var _default =
             console.log(res);
             uni.showToast({
               title: "电影票使用成功",
-              icon: null });
+              icon: 'none' });
 
             _this2.getticket();
           } });
